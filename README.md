@@ -45,11 +45,11 @@ In this "Simple" setup, we use a **PersistentVolume (PV)** to store DAGs locally
 
 ## GitHub Integration
 
-1. Create a new repository on GitHub.
+1. Create a new repository on GitHub (already done).
 2. Link this local repo:
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/airflow-k8s-project.git
+   git remote add origin https://github.com/pwawiwa/airflow-k8s-project.git
    git add .
-   git commit -m "Initial Airflow on K8s project"
-   git push -u origin main
+   git commit -m "Update URLs"
+   git push
    ```

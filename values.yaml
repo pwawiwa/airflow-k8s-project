@@ -20,10 +20,10 @@ webserver:
 # DAGs configuration
 dags:
   gitSync:
-    enabled: false # Set to true once the repo is on GitHub
-    # repo: https://github.com/YOUR_USERNAME/airflow-k8s-project.git
-    # branch: main
-    # subPath: "dags"
+    enabled: true
+    repo: https://github.com/pwawiwa/airflow-k8s-project.git
+    branch: main
+    subPath: "dags"
   persistence:
     enabled: true
     size: 1Gi
