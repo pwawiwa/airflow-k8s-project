@@ -1,0 +1,31 @@
+# Simplified Airflow values for Docker Desktop
+executor: KubernetesExecutor
+
+# Disable examples
+airflow:
+  extraEnv:
+    - name: AIRFLOW__CORE__LOAD_EXAMPLES
+      value: "False"
+
+# Use local postgres (bundled with chart)
+postgresql:
+  enabled: True
+
+# Scheduler and Webserver
+scheduler:
+  replicas: 1
+webserver:
+  replicas: 1
+
+# DAGs configuration
+dags:
+  gitSync:
+    enabled: false # Set to true once the repo is on GitHub
+    # repo: https://github.com/YOUR_USERNAME/airflow-k8s-project.git
+    # branch: main
+    # subPath: "dags"
+  persistence:
+    enabled: true
+    size: 1Gi
+    storageClassName: hostpath
+    accessMode: ReadWriteOnce
