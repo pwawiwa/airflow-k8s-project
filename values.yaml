@@ -14,8 +14,45 @@ postgresql:
 # Scheduler and Webserver
 scheduler:
   replicas: 1
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+
 webserver:
   replicas: 1
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+
+apiServer:
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+  # Give it more time to start up on local machine
+  startupProbe:
+    failureThreshold: 30
+    periodSeconds: 10
+
+dagProcessor:
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
 
 # DAGs configuration
 dags:
