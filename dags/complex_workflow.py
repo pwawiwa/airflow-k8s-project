@@ -1,6 +1,6 @@
 from airflow import DAG
-from airflow.operators.bash import BashOperator
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.bash import BashOperator
+from airflow.providers.standard.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
 default_args = {
@@ -34,7 +34,6 @@ with DAG(
     t2 = PythonOperator(
         task_id='process_data_task',
         python_callable=process_data,
-        provide_context=True,
     )
 
     t3 = BashOperator(
