@@ -21,7 +21,7 @@ with DAG(
     'complex_k8s_workflow',
     default_args=default_args,
     description='A complex DAG for K8s playground',
-    schedule_interval=timedelta(days=1),
+    schedule=timedelta(days=1),
     catchup=False,
     tags=['playground', 'k8s'],
 ) as dag:

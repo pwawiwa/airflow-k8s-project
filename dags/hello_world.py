@@ -8,7 +8,7 @@ def hello_world():
 with DAG(
     dag_id="hello_world_k8s",
     start_date=datetime(2023, 1, 1),
-    schedule_interval="@daily",
+    schedule="@daily",
     catchup=False
 ) as dag:
     task1 = PythonOperator(
