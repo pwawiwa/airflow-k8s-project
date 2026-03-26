@@ -8,17 +8,30 @@ on:
       - 'dags/**'
 
 jobs:
-  deploy:
+  validate-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Lint DAGs (Optional)
-        run: |
-          echo "Linting DAGs..."
-          # You can add flake8 or other linters here
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-      - name: Notify Git-Sync
+      - name: Install dependencies
         run: |
-          echo "DAGs have been pushed to GitHub. Airflow git-sync will pull the changes automatically."
+          python -m pip install --upgrade pip
+          pip install apache-airflow
+
+      - name: Validate DAGs (Syntax Check)
+        run: |
+          echo "Validating DAGs..."
+          for file in dags/*.py; do
+            python "$file" || exit 1
+          done
+          echo "All DAGs passed syntax check."
+
+      - name: Notify Deployment
+        run: |
+          echo "DAGs validated and pushed. Airflow git-sync will pull the changes."
